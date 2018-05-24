@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Run The Earth</title>
+	<meta name="description" content="" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+ 	<base href="/" />
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link href="/css/landing-page.css" rel="stylesheet">
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="/webjars/angular-route/1.4.3/angular-route.min.js"></script>
+	<script type="text/javascript" src="/webjars/angular-resource/1.4.3/angular-resource.min.js"></script>
+	<script type="text/javascript" src="/webjars/angularjs-google-maps/1.17.6/ng-map.min.js"></script>
+	<script type="text/javascript" src="/webjars/angular-filter/0.5.9/dist/angular-filter.js"></script>
+
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+	  .navbar, .progress {
+	    margin-bottom: 0;
+	  }
+    </style>
+</head>
+<body ng-app="app" ng-controller="home as home">
+ 	<div ng-if="home.authenticated" ng-include="'/auth/navigation.html'"></div>
+	<div  style="height: 100%;" ng-if="home.authenticated">
+		<div ng-init="home.init()" style="height: 100%" ng-view=""></div>
+	</div>
+ 	<script type="text/javascript" src="/js/services.js"></script>
+	<script type="text/javascript" src="/js/route-controller.js"></script>
+	<script type="text/javascript" src="/js/stats-controller.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+</body>
+</html>

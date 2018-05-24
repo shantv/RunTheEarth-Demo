@@ -1,0 +1,50 @@
+<div>
+	<div class="btn-group" role="group" aria-label="...">
+	  <button type="button" ng-click="grouping = getWeekYear" class="btn btn-default">Weekly</button>
+	  <button type="button" ng-click="grouping = getMonthYear" class="btn btn-default">Monthly</button>
+	  <button type="button" ng-click="grouping = getYear"  class="btn btn-default">Yearly</button>
+	</div>
+	<table class="table table-condensed table-striped table-hover" style="padding: 0px;">
+		<thead>
+		<tr>
+			<th>Period</th>
+			<th>Calories</th>
+			<th>Duration</th>
+			<th>Activities</th>
+		</tr>
+		</thead>
+		<tbody >
+			<tr ng-repeat="(k,v) in workouts | orderBy:'-start_datetime' | groupBy: grouping track by $index " style="padding: 0px;" >
+				<th>{{k}}</th>
+				<td>{{(v | map:'aggregates.metabolic_energy_total'|sum)/4184.0 | number:0}}</td>
+				<td>{{(v | map:'aggregates.active_time_total' | sum)/60|number:0}} min</span></td>
+				<td>
+					<ul class="list-group list-inline">
+						<li class="list-group-item" style="vertical-align: top" ng-repeat="(id,g) in v | groupBy:'activityId'">
+							<table class="">
+								<tr style="align"><td>
+								    <span style="text-align:center" class="tag tag-default tag-pill pull-xs-right"><b>{{g.length}}</b></span>
+								</td></tr>
+							    <tr><td>
+									<img title="{{activitys[id].name}}" height=50 width=50 ng-src="{{activitys[id]._links.icon_url[0].href}}">
+								</td></tr>
+								<tr><td>
+									<span class="tag tag-default tag-pill pull-xs-right">{{(g | map:'aggregates.active_time_total' | sum)/60|number:0}} min</span>
+								</td></tr>
+								<tr><td>
+									<span class="tag tag-default tag-pill pull-xs-right">{{(g | map:'aggregates.metabolic_energy_total' | sum)/4184.0|number:0}} cal</span>
+								</td></tr>
+								<tr><td>
+									<span class="tag tag-default tag-pill pull-xs-right">{{(g | map:'aggregates.distance_total' | sum)/1000|number:1}} km</span>
+								</td></tr>
+								<tr><td>
+									<span class="tag tag-default tag-pill pull-xs-right">{{((g | map:'aggregates.distance_total' | sum)/1000)*0.621371|number:1}} mi</span>
+								</td></tr>
+							</table>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+

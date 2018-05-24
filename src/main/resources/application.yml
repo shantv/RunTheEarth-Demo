@@ -1,0 +1,47 @@
+security:
+  oauth2:
+    client:
+      client-id: test
+      client-secret: test
+      scope: read,write
+      auto-approve-scopes: '.*'
+
+server:
+  session:
+    timeout: -1
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+mapmyrun-dev:
+  client:
+    clientId: <***EXCLUDED***>
+    clientSecret: <***EXCLUDED***>
+    accessTokenUri: https://www.mapmyfitness.com/v7.1/oauth2/access_token
+    userAuthorizationUri: https://www.mapmyfitness.com/v7.1/oauth2/authorize
+    use-current-uri: false
+    pre-established-redirect-uri: http://localhost:8080/login/mapmyrun
+    grant-type: authorization_code
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+    scope: read,write
+  resource:
+    userInfoUri: http://localhost:8080/callback
+mapmyrun:
+  client:
+    clientId: <***EXCLUDED***>
+    clientSecret: <***EXCLUDED***>
+    accessTokenUri: https://www.mapmyfitness.com/v7.1/oauth2/access_token
+    userAuthorizationUri: https://www.mapmyfitness.com/v7.1/oauth2/authorize
+    use-current-uri: false
+    pre-established-redirect-uri: http://www.runtheearth.com/login/mapmyrun
+    grant-type: authorization_code
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+    scope: read,write
+  resource:
+    userInfoUri: http://www.runtheearth.com/callback
+      
+logging:
+  level:
+    org.springframework.security: INFO

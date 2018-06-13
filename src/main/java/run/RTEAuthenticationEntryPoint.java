@@ -24,7 +24,7 @@ public class RTEAuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		setRealmName("Baeldung");
+		setRealmName("RunTheEarth");
 		super.afterPropertiesSet();
 	}
 }
